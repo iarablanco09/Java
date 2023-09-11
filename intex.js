@@ -22,22 +22,22 @@ while (vof){
     }else{
         console.log("Menor de edad");
         alert("Lo sentimos, ingresaste la edad de"+" "+edadingresada+" "+"y para ingresar al sitio debes ser mayor de 18 años.");
-        vof=true;
+
     }
 }
 
-let tof=true;
+let tof = true;
+let nombre = "";
+
 while(tof){
     const nombre= prompt("Ingrese su nombre").toLocaleUpperCase();
     if (nombre!=""){
         console.log("Nombre ingresado correctamente")
        alert("!Bienvenida al sitio web"+" "+nombre+ "!");
     tof=false;
-    break;
 }else{
     alert ("Por favor,complete todos los campos");
     console.log("Error")
-    tof=true;
 }
 }
 
@@ -61,6 +61,7 @@ function initEntradas(){
         case 4:
         Producto();
         tOrF=true;
+        break;
         case 5:
         tOrF=false;
         }
@@ -78,6 +79,23 @@ function comprarEntrada(){
         }
     }
 }
+initEntradas();
+const metodosDePago = ["Efectivo", "Tarjeta de Crédito", "Tarjeta de Débito", "Mercado Pago"];
+console.log("Métodos de pago disponibles:");
+for (let i = 0; i < metodosDePago.length; i++) {
+    console.log(`${i + 1}. ${metodosDePago[i]}`);
+}
+let metodoSeleccionado;
+while (true) {
+    const opcionDePago = parseInt(prompt("Seleccione un método de pago (1-4):\n 1-Efectivo \n 2-Tarjeta de credito \n 3-Tarjeta de Debito \n 4-Mercado Pago"));
+    if (opcionDePago >= 1 && opcionDePago <= 4) {
+        metodoSeleccionado = metodosDePago[opcionDePago - 1];
+        alert(`Ha seleccionado ${metodoSeleccionado}`);
+        break;
+    } else {
+        alert("Opción incorrecta. Por favor, seleccione un método de pago válido.");
+    }
+}
 
 
 function mesasVipSeleccion(){
@@ -86,7 +104,7 @@ function mesasVipSeleccion(){
 
         if(mesasVipSeleccion==""){
             alert("Por favor, Ingrese una opcion.")
-        }else if(mesasVipSeleccion==4){            
+        }else if(mesasVipSeleccion==4){
             break;
         }
         switch(mesasVipSeleccion){
@@ -104,10 +122,8 @@ function mesasVipSeleccion(){
             break;
         default:
             tOrF=false;
-            break;      
+            break;
     }}}
-
-initEntradas();
 
 function Producto(nombre, precio){
     this.nombre= nombre;
@@ -127,14 +143,13 @@ while (trueOrFalse){
 
     if(nombre ===""|| precio===""|| precio!==Number){
         alert("Por favor, complete todos los campos correctamente");
-        
+
     }else{
         producto= new Producto(nombre, precio);
         trueOrFalse=false;
     }
 
 }
-
 console.log("precio" in producto);
 for(propiedad in producto){
 console.log(`Para la propiedad ${propiedad} el valor es ${producto[propiedad]}`)
@@ -157,46 +172,22 @@ while(trueOrFalse){
         default:
             alert("Opcion incorrecta");
             break;
-    }
+    }}
 
+
+const productos = [
+    { nombre: "Cerveza (Lata)", precio: 800 },
+    { nombre: "Champagne (Extra brut 750ml)", precio: 3700 },
+    { nombre: "Vodka (Absolut 700ml)", precio: 5689 },
+    { nombre: "Gaseosas o aguas", precio: 750 }
+];
+
+// Luego, en el bucle de selección de productos:
+const opcion = parseInt(prompt("Seleccione un producto (1-4): \n 1-Cerveza \n 2-Champagne \n 3-Vodka \n 4-Gaseoda o agua"));
+
+if (opcion >= 1 && opcion <= productos.length) {
+    const productoSeleccionado = productos[opcion - 1];
+    console.log(`Producto seleccionado: ${productoSeleccionado.nombre}, Precio: $${productoSeleccionado.precio}`);
+} else {
+    alert("Opción incorrecta. Por favor, seleccione un producto válido.");
 }
-
-
-const metodoDePago=["Efectivo","Credito","Debito","Mercadopg"];
-console.log(metodoDePago);
-vof=true;
-
-for(let i=0;i < metodoDePago.length; i++){
-    console.log(metodoDePago[i]);
-}
-
-while(vof){
-    const opcionDePago=parseInt(prompt("Seleccione un Metodo de pago:\n 1-Efectivo \n 2-Tarjeta de Credito \n 3-Tarjeta Debito \n 4-Mercado Pago"))
-    switch(opcionDePago){
-        case 1:
-            alert("Ha seleccionado Efectivo")
-            console.log(metodoDePago[metodoDePago[0]])
-            break;
-        case 2:
-            alert("Ha seleccionado Tarjeta Credito")
-            console.log(metodoDePago[metodoDePago[1]])
-             break;   
-        case 3:
-            alert("Ha seleccionado Tarjeta Debito")
-            console.log(metodoDePago[metodoDePago[2]])
-            break;
-        case 4:
-            alert("Ha seleccionado Mercado Pago")
-            console.log(metodoDePago[metodoDePago[3]])
-            break;
-        default:
-            vof=false;
-            
-    
-    }
-
-
-}
-
-
-

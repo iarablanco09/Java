@@ -1,48 +1,11 @@
-const hora=prompt("Ingrese la hora (Desde 00 a 23)");
-if(hora >= 6 && hora <= 12){
-    console.log("Horario diurno")
-    alert("¡Buenos dias!");
-}else if (hora >=12 && hora <=20){
-    console.log("Horario vespertino")
-    alert("¡Buenas tardes!");
-}else{
-    console.log("Horario nocturno")
-    alert("¡Buenas noches!");
-}
-
-let vof=true;
-
-while (vof){
-    const edadingresada= Number(prompt("Ingrese su edad"));
-    if(edadingresada >=18){
-        console.log("Mayor de edad");
-        vof=false;
-        break;
-    }else{
-        console.log("Menor de edad");
-        alert("Lo sentimos, ingresaste la edad de"+" "+edadingresada+" "+"y para ingresar al sitio debes ser mayor de 18 años.");
-        vof=true;
-
-    }
-}
-
-let tof=true;
-let nombre = "";
-
-while(tof){
-    const nombre= prompt("Ingrese su nombre").toLocaleUpperCase();
-    if (nombre!=""){
-        console.log("Nombre ingresado correctamente")
-       alert("!Bienvenida al sitio web"+" "+nombre+ "!");
-    tof=false;
-    break;
-}else{
-    alert ("Por favor,complete todos los campos");
-    console.log("Error")
-    tof=true;
-}}
 
 let tOrF = true;
+let precioUnitario=2500;
+let precioGreen=25000;
+let precioBlue=50000;
+let precioRed=100000;
+
+
 function initEntradas() {
     while (tOrF) {
         let opSeleccion = parseInt(prompt("Elija una opción:\n 1-Comprar entradas: $2500 \n 2-Comprar entrada a mesas VIP \n 3-Elegir método de pago\n 4-Seguir comprando \n 5-Salir"));
@@ -54,7 +17,7 @@ function initEntradas() {
                 mesasVipSeleccion();
                 break;
             case 3:
-                metodoDePago();
+                opcionDePago();
                 break;
             case 4:
                 comprarProductos();
@@ -70,11 +33,13 @@ function initEntradas() {
 }
 initEntradas();
 
+
 function comprarEntrada(){
     let cantSeleccion= parseInt(prompt("Ingrese la cantidad de entradas que quiere comprar."));
     while(tOrF){
         if(cantSeleccion>0){
-            alert(`Cantidad de entradas seleccionadas ${cantSeleccion}`);
+            let precioTotal=precioUnitario*cantSeleccion
+            alert(`Cantidad de entradas seleccionadas ${cantSeleccion} a ${precioTotal}`);
             tOrF=true;
             break;
         }else{
@@ -84,25 +49,23 @@ function comprarEntrada(){
     }
 }
 
-
 function mesasVipSeleccion() {
     while (tOrF) {
         const mesaVipSeleccion = parseInt(prompt("Elija una mesa:\n(Una vez que termine con su elección, vuelva al inicio para realizar el pago)\n 1-Mesa Green (Max 5 personas): $25000 \n 2-Mesa Blue (Max 10 personas): $50000 \n 3-Mesa Red (Max 20 personas): $100000 \n 4-Salir/Volver a inicio"));
-
-        if (isNaN(mesaVipSeleccion)) {
+        if (isNaN(mesaVipSeleccion)){
             alert("Por favor, ingrese una opción válida.");
         } else if (mesaVipSeleccion == 4) {
             break;
         } else if (mesaVipSeleccion >= 1 && mesaVipSeleccion <= 3) {
             switch (mesaVipSeleccion) {
                 case 1:
-                    alert("Haz seleccionado la Mesa Green.");
+                    alert(`Haz seleccionado la Mesa Green al valor de ${precioGreen}`);
                     break;
                 case 2:
-                    alert("Haz seleccionado la Mesa Blue.");
+                    alert(`Haz seleccionado la Mesa Blue al valor de ${precioBlue}`);
                     break;
                 case 3:
-                    alert("Haz seleccionado la Mesa Red.");
+                    alert(`Haz seleccionado la Mesa Red al valor de ${precioRed}`);
             break;
             break;
         default:
@@ -110,7 +73,7 @@ function mesasVipSeleccion() {
             break;
     }}}}
 
-
+   
 function Producto(nombre, precio){
     this.nombre= nombre;
     this.precio= precio;
@@ -151,7 +114,6 @@ function comprarProductos() {
     }
 }
 
-initEntradas();
 
 const metodosDePago = ["Efectivo", "Tarjeta de Crédito", "Tarjeta de Débito", "Mercado Pago"];
 console.log("Métodos de pago disponibles:");
